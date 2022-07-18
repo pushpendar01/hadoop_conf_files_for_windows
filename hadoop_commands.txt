@@ -1,0 +1,13 @@
+hadoop fs -ls /        ---to see all files in hdfs
+hdfs dfs -ls /         --- same as above
+hadoop fs -mkdir /test3  --- to create a dir
+hadoop fs -put filename.txt /test3 --to copy from local to hadoop
+hadoop fs -copyFromLocal filename.txt /test3  --same as above
+hadoop fs -ls /xyz
+hadoop fs -cat /xyz
+hadoop fs -moveFromLocal filename.txt /test3  --to move from local
+hadoop fs -get /test6/*    ---to get all files in test6
+hadoop fs -cp /test6/* test7/ --- copy inside hdfs
+hadoop fs -mv /test6/* test7/
+hadoop fs -copyToLocal /test  ---from hadoop to local
+hdfs dfs -du /  --to check disk utilization

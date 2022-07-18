@@ -1,0 +1,134 @@
+installation of Hadoop Framework on Windows machine.
+
+System requirements:
+
+1. Windows 10 OS
+
+2. At least 4 GB RAM
+
+3. Free disk space of at least 20 GB
+
+4. Java JDK 1.8.0 installed    (Check compatabilty Hadoop version with respective Java Version)
+
+======In this example====HADOOP-2.8.0======JAVA 7=======
+
+Installation Steps
+
+1. Go download Hadoop tar file hadoop-2.8.0.tar.gz
+
+2. Once the download is complete extract the file using WinZip / WinRAR / 7-ZIP
+
+3. download the java (https://www.oracle.com/in/java/technologies/javase/javase7-archive-downloads.html ) 
+
+--------------SET THE ENVIRONMENT VARIABLES-----------------------
+
+Configure the Environment Variables.
+
+Go to - This PC--> Right Click -->Properties -->Advanced System Settings --> Environment Variables
+
+Add and set the path for the following user variables in environment variable section.
+
+JAVA_HOME           path(before bin)    C:\Program Files\Java\jdk1.7.0.22
+Path		    path(with bin)	C:\Program Files\Java\jdk1.7.0.22\bin
+HADOOP_HOME         path(before bin)    C:\HADOOP_HOME\hadoop-2.8.0
+Path		    path(with bin)	C:\HADOOP_HOME\hadoop-2.8.0\bin
+
+=============Now configure 5 files in hadoop================
+
+1. Edit the file ‘C:/Hadoop-2.8.0/etc/hadoop/core-site.xml’, add the below xml code and save the file.
+
+<configuration>
+   <property>
+       <name>fs.defaultFS</name>
+       <value>hdfs://localhost:9000</value>
+   </property>
+</configuration>
+
+
+2. Edit the file ‘C:/Hadoop-2.8.0/etc/hadoop/mapred-site.xml’, add the below xml code and save the file.
+
+<configuration>
+   <property>
+       <name>mapreduce.framework.name</name>
+       <value>yarn</value>
+   </property>
+</configuration>
+
+
+
+a. Create a folder “data” under “C:\Hadoop-2.8.0”
+
+b. Create two folders “datanode” and “namenode” under “C:\Hadoop-2.8.0\data”
+
+3. Edit the file C:\Hadoop-2.8.0/etc/hadoop/hdfs-site.xml, add the below xml code and save the file.
+
+<configuration>
+   <property>
+   <name>dfs.replication</name>
+   <value>1</value>
+   </property>
+   <property>
+   <name>dfs.namenode.name.dir</name>
+   <value>/hadoop-2.8.0/data/namenode</value>
+   </property>
+   <property>
+   <name>dfs.datanode.data.dir</name>
+   <value>/hadoop-2.8.0/data/datanode</value>
+   </property>
+</configuration>
+
+
+4.  Edit the file C:/Hadoop-2.8.0/etc/hadoop/yarn-site.xml, add the  below xml code and save the file.
+ 
+<configuration>
+   <property>
+   <name>yarn.nodemanager.aux-services</name>
+   <value>mapreduce_shuffle</value>
+   </property>
+   <property>
+   <name>yarn.nodemanager.auxservices.mapreduce.shuffle.class</name> 
+   <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+   </property>
+</configuration>
+
+
+5. Edit the file C:/Hadoop-2.8.0/etc/hadoop/hadoop-env.cmd 
+by changing “JAVA_HOME=%JAVA_HOME%” to JAVA_HOME =C:\Java\jdk-12.
+
+
+=================Now need to add some extra files to bin folder of hadoop ==========
+
+you can download from https://github.com/pushpendar01/hadoop_conf_files_for_windows/
+
+final step:
+
+6. Delete the Hadoop bin folder ‘C:\Hadoop-2.8.0\bin’, replace it with the new bin folder downloaded from Hadoop Configuration.zip.
+
+7. Open Command Prompt
+
+8. Check whether hadoop is successfully installed by running the  command   ‘hadoop version’
+
+===========Now need to format the name node======
+
+9. Format the NameNode by executing the command ‘hdfs namenode -format’
+10. Next change the directory to Hadoop sbin folder with the command
+11. Start namenode and datanode with the command
+			start-dfs.cmd
+
+12. Next start yarn using the command
+			start-yarn.cmd
+
+13. Note: Make sure all the 4 Apache Hadoop Distribution windows are up and running.
+
+To access information about resource manager current jobs, successful and failed jobs, 
+go to this link in browser- http://localhost:8088/cluster 
+
+14. To check the details about the hdfs (namenode and datanode), open this link in browser- http://localhost:50070/
+
+Congratuallations you have installed Hadoop !!!!!!!!!!!!!!!!!
+
+==============================Thank You !!!!!!!!========================================
+
+
+
+
