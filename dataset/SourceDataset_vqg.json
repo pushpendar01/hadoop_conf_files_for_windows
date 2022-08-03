@@ -1,0 +1,33 @@
+{
+	"name": "SourceDataset_vqg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "airlines.csv",
+				"container": "data4project"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "IATA_CODE",
+				"type": "String"
+			},
+			{
+				"name": "AIRLINE",
+				"type": "String"
+			}
+		]
+	}
+}
