@@ -1,0 +1,9 @@
+{
+	"name": "Meri-factory",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d009754b-32ce-4435-91c9-9794081d8f65",
+		"tenantId": "63ce7d59-2f3e-42cd-a8cc-be764cff5eb6"
+	}
+}
